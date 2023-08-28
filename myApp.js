@@ -11,12 +11,12 @@ async function connectDB() {
     console.log(error.message)
   }
 }
-connectDB()
+connectDB();
 
 const personSchema = new mongoose.Schema({
   name: {
     type: String,
-    requiird: true
+    required: true
   },
   age: {
     type: Number
@@ -28,6 +28,7 @@ const personSchema = new mongoose.Schema({
 
 let Person = mongoose.model("Person", personSchema);
 
+/**CREATE AND SAVE PEESON */
 const createAndSavePerson = async (done) => {
   //done(null /*, data*/);
   const newPerson = new Person({ name: "John", age: 12, favoriteFoods: ["Onion", "Garlic"] });
@@ -37,11 +38,39 @@ const createAndSavePerson = async (done) => {
     }
     done(null, data);
   });
+
+  //done(null /*, data*/);
+  // const newPerson = new Person({ name: "Man", age: 11, favoriteFoods: ["Coke", "Bread"] });
+  // newPerson.save((err, data) => {
+  //   if (err) {
+  //     done(err);
+  //   }
+  //   done(null, data);
+  // });
 };
 
+/**CREATE MANY PEOPLE */
+var arrayOfPeople = [
+  { name: "Jane", age: 22, favoriteFoods: ["Yam", "Tomato"] },
+  { name: "Mike", age: 54, favoriteFoods: ["Sogium", "Sweetnwe"] },
+  { name: "James", age: 47, favoriteFoods: ["Biscuits", "Tea"] },
+]
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  // arrayOfPeople = [
+  //   { name: "Jane", age: 22, favoriteFoods: ["Yam", "Tomato"] },
+  //   { name: "Mike", age: 54, favoriteFoods: ["Sogium", "Sweetnwe"] },
+  //   { name: "James", age: 47, favoriteFoods: ["Biscuits", "Tea"] },
+  // ]
+  //done(null /*, data*/);
+  Person.create(arrayOfPeople, function (err, data) {
+    if (err) {
+      console.error(err);
+    }
+    done(null, data);
+  })
 };
+
 
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/);
