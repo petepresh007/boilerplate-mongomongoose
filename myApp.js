@@ -48,23 +48,28 @@ const createAndSavePerson = async (done) => {
 // ]
 
 const createManyPeople = (arrayOfPeople, done) => {
-  arrayOfPeople = [
-    { name: "Jane", age: 22, favoriteFoods: ["Yam", "Tomato"] },
-    { name: "Mike", age: 54, favoriteFoods: ["Sogium", "Sweetnwe"] },
-    { name: "James", age: 47, favoriteFoods: ["Biscuits", "Tea"] },
-  ]
-  //done(null /*, data*/);
-  Person.create(arrayOfPeople, function (err, data) {
-    if (err) {
-      console.error(err);
-    }
-    done(null, data);
-  });
+    //done(null, /*data*/);
+    // Person.create(arrayOfPeople, function(err, data){
+    //   if (err){
+    //     console.error(err);
+    //     done(err)
+    //   }else{
+    //     done(null, data)
+    //   }
+    // })
 };
 
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  //done(null /*, data*/);
+  Person.find({name:"Jane"}, (err, data)=>{
+    if (err){
+      console.error(err);
+      done(err)
+    }else{
+      done(null , data);
+    }
+  });
 };
 
 const findOneByFood = (food, done) => {
