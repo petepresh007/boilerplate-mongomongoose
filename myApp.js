@@ -68,6 +68,7 @@ const findPeopleByName = (personName, done) => {
       done(err)
     }else{
       done(null , data);
+      console.log("yes");
     }
   });
 };
